@@ -6,19 +6,21 @@ export default function Home() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
   useEffect(() => {
     fetchTodos();
   }, []);
 
   const fetchTodos = async () => {
-    const response = await fetch("http://localhost:8000/todos");
+    const response = await fetch(`${API_URL}/todos`);
     const data = await response.json();
     setTodos(data);
   };
 
   const addTodo = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8000/todos", {
+    const response = await fetch(`${API_URL}/todos`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title: newTodo }),
@@ -29,7 +31,7 @@ export default function Home() {
   };
 
   const deleteTodo = async (id) => {
-    await fetch(`http://localhost:8000/todos/${id}`, { method: "DELETE" });
+    await fetch(`${API_URL}/todos/${id}`, { method: "DELETE" });
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
