@@ -1,10 +1,10 @@
 {
-  "extends": ["next/core-web-vitals", "next/babel"],
-  "parser": "@babel/eslint-parser",
+  "extends": ["next/core-web-vitals"],
   "parserOptions": {
-    "requireConfigFile": false,
-    "babelOptions": {
-      "presets": ["next/babel"]
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     }
   }
 }
