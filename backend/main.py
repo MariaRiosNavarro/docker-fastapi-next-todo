@@ -3,16 +3,31 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 from pydantic import BaseModel
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
+import time
+from sqlalchemy.exc import OperationalError
+
+def wait_for_db(engine, max_retries=5, retry_interval=5):
+    for _ in range(max_retries):
+        try:
+            with engine.connect() as connection:
+                print("Successfully connected to the database")
+                return
+        except OperationalError:
+            print(f"Database not ready, retrying in {retry_interval} seconds...")
+            time.sleep(retry_interval)
+    raise Exception("Could not connect to the database after multiple attempts")
+
+
 
 load_dotenv() 
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
+wait_for_db(engine)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
