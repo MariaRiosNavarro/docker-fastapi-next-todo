@@ -14,8 +14,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
-    "@babel/eslint-parser": "^7.25.1",
+
     "eslint": "^8",
     "eslint-config-next": "^14.2.8",
     "postcss": "^8",
