@@ -10,6 +10,9 @@ import time
 from sqlalchemy.exc import OperationalError
 
 def wait_for_db(engine, max_retries=5, retry_interval=5):
+    if DATABASE_URL == "sqlite:///:memory:":
+        print("Using in-memory SQLite, no need to wait for database")
+        return
     for _ in range(max_retries):
         try:
             with engine.connect() as connection:
