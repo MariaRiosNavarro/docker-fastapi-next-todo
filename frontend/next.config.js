@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Your config options here
+  output: "standalone",
+  experimental: {
+    outputStandalone: true,
+  },
 };
 
 module.exports = nextConfig;
