@@ -35,26 +35,32 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Todo App</h1>
-      <form onSubmit={addTodo} className="mb-4">
+      <h1 className="text-3xl font-bold mb-4 pt-4 text-center">Todo App</h1>
+      <form onSubmit={addTodo} className="mx-auto flex justify-center p-4">
         <input
           type="text"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           placeholder="Add a new todo"
-          className="border p-2 mr-2"
+          className="border p-2 mr-2 text-black rounded w-[25%]"
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 px-3 rounded"
+        >
           Add
         </button>
       </form>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id} className="flex justify-between items-center mb-2">
+          <li
+            key={todo.id}
+            className="flex justify-between items-center py-4 border-b-2"
+          >
             <span>{todo.title}</span>
             <button
               onClick={() => deleteTodo(todo.id)}
-              className="bg-red-500 text-white p-1 rounded"
+              className="bg-red-500 text-white py-1 px-3 rounded"
             >
               Delete
             </button>
