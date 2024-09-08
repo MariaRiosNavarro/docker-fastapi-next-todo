@@ -24,9 +24,16 @@ def wait_for_db(engine, max_retries=5, retry_interval=5):
 
 load_dotenv() 
 
-DATABASE_URL = os.getenv("DATABASE_URL")
 
-engine = create_engine(DATABASE_URL)
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./test.db")
+
+
+if os.getenv("RENDER"):
+    DATABASE_URL = "sqlite:///:memory:"
+
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+
+
 wait_for_db(engine)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
