@@ -6,10 +6,7 @@ export default function Home() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
 
-  const API_URL =
-    process.env.NEXT_PUBLIC_API_URL ||
-    "http://localhost:8000" ||
-    "https://docker-fastapi-next-todo.onrender.com";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     fetchTodos();
