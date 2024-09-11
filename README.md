@@ -11,4 +11,4 @@ https://docker-fastapi-next-todo.onrender.com/
 Frontend:
 
 
-https://dashboard.render.com/web/srv-creqj8ogph6c73euo1h0/logs
+https://docker-fastapi-next-todo-1.onrender.com/
